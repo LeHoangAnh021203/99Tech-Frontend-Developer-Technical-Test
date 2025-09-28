@@ -1,0 +1,19 @@
+{
+  "name": "problem4",
+  "version": "1.0.0",
+  "description": "Three unique implementations of sum_to_n function with complexity analysis",
+  "main": "sum_implementations.ts",
+  "scripts": {
+    "dev": "ts-node sum_implementations.ts",
+    "build": "tsc",
+    "test": "ts-node sum_implementations.ts"
+  },
+  "keywords": ["typescript", "algorithms", "complexity", "sum"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "problem3",
+  "version": "1.0.0",
+  "description": "Analyze the provided React TypeScript code for computational inefficiencies and anti-patterns, then provide a refactored version.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node demo.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@types/node": "^24.5.2",
+    "@types/react": "^18.3.24",
+    "react": "^18.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}

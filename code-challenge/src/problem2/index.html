@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Form</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="swap-card">
+            
+            <div class="header">
+                <h2 class="title">Swap</h2>
+                <button class="settings-btn" id="settingsBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
+                    </svg>
+                </button>
+            </div>
+
+             Settings Panel 
+            <div class="settings-panel" id="settingsPanel" style="display: none;">
+                <div class="settings-content">
+                    <label class="settings-label">Slippage Tolerance</label>
+                    <div class="slippage-controls">
+                        <button class="slippage-btn active" data-value="0.1">0.1%</button>
+                        <button class="slippage-btn" data-value="0.5">0.5%</button>
+                        <button class="slippage-btn" data-value="1.0">1.0%</button>
+                        <input type="number" class="slippage-input" id="customSlippage" placeholder="Custom" step="0.1" min="0" max="50">
+                    </div>
+                </div>
+            </div>
+
+             From Token 
+            <div class="token-section">
+                <div class="token-header">
+                    <label class="token-label">From</label>
+                    <span class="balance">Balance: <span id="fromBalance">1.5</span> <span id="fromSymbol">BTC</span></span>
+                </div>
+                <div class="token-card">
+                    <div class="token-content">
+                        <button class="token-selector" id="fromTokenSelector">
+                            <div class="token-info">
+                                <div class="token-icon" id="fromTokenIcon">₿</div>
+                                <div class="token-details">
+                                    <div class="token-symbol" id="fromTokenSymbol">BTC</div>
+                                    <div class="token-name" id="fromTokenName">Bitcoin</div>
+                                </div>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6,9 12,15 18,9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="amount-input-container">
+                            <input type="number" class="amount-input" id="fromAmount" placeholder="0.0" step="any" min="0">
+                            <div class="amount-footer">
+                                <span class="usd-value" id="fromUsdValue">$0.00</span>
+                                <button class="max-btn" id="maxBtn">MAX</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             Swap Button 
+            <div class="swap-arrow-container">
+                <button class="swap-arrow-btn" id="swapArrowBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="17,1 21,5 17,9"></polyline>
+                        <path d="M3,11V9a4,4 0 0,1 4,-4h14"></path>
+                        <polyline points="7,23 3,19 7,15"></polyline>
+                        <path d="M21,13v2a4,4 0 0,1 -4,4H3"></path>
+                    </svg>
+                </button>
+            </div>
+
+             To Token 
+            <div class="token-section">
+                <label class="token-label">To</label>
+                <div class="token-card">
+                    <div class="token-content">
+                        <button class="token-selector" id="toTokenSelector">
+                            <div class="token-info">
+                                <div class="token-icon" id="toTokenIcon">Ξ</div>
+                                <div class="token-details">
+                                    <div class="token-symbol" id="toTokenSymbol">ETH</div>
+                                    <div class="token-name" id="toTokenName">Ethereum</div>
+                                </div>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6,9 12,15 18,9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="amount-input-container">
+                            <div class="amount-display" id="toAmount">0.0</div>
+                            <div class="amount-footer">
+                                <span class="usd-value" id="toUsdValue">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             Swap Details 
+            <div class="swap-details" id="swapDetails" style="display: none;">
+                <div class="details-header" id="detailsHeader">
+                    <span class="exchange-rate" id="exchangeRate">1 BTC = 16.3208 ETH</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chevron-icon" id="chevronIcon">
+                        <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
+                </div>
+                <div class="details-content" id="detailsContent" style="display: none;">
+                    <div class="detail-row">
+                        <span class="detail-label">Price Impact</span>
+                        <span class="detail-value price-impact" id="priceImpact">0.12%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Slippage Tolerance</span>
+                        <span class="detail-value" id="slippageDisplay">0.1%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Network Fee</span>
+                        <span class="detail-value">~$2.50</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Minimum Received</span>
+                        <span class="detail-value" id="minimumReceived">16.3045 ETH</span>
+                    </div>
+                </div>
+            </div>
+
+             Main Swap Button 
+            <button class="swap-btn" id="swapBtn" disabled>
+                <span class="swap-btn-text">Confirm Swap</span>
+                <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spinner">
+                        <path d="M21,12a9,9 0 1,1-6.219-8.56"></path>
+                    </svg>
+                </div>
+            </button>
+
+             Info 
+            <div class="info-text">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>By swapping, you agree to our terms of service and acknowledge the risks involved.</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="tokenModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Select Token</h3>
+                <button class="modal-close" id="modalClose">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <!-- Search is optional; hidden by default to show full list quickly -->
+            <div class="search-container" style="display:none">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="search-input" id="tokenSearch" placeholder="Search tokens...">
+            </div>
+            <div class="token-list" id="tokenList">
+                 Token list will be populated by JavaScript 
+            </div>
+        </div>
+    </div>
+
+     
+    <div class="toast" id="toast" style="display: none;">
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle"></div>
+            <div class="toast-description" id="toastDescription"></div>
+        </div>
+        <button class="toast-close" id="toastClose">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
